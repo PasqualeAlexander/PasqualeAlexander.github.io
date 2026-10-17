@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexander Pasquale | Full-Stack & Automation Developer</title>
+  <meta name="description" content="Desarrollador Full-Stack, Automatizaciones & Experiencias Web 3D. Soluciones digitales a medida con TypeScript, Node.js, Three.js, Python y SQL.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg-dark: #0a0d14;
+      --bg-card: rgba(18, 24, 38, 0.7);
+      --bg-card-hover: rgba(28, 38, 60, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(56, 189, 248, 0.3);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-glow: rgba(56, 189, 248, 0.25);
+      --accent: #818cf8;
+      --success: #34d399;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(10, 13, 20, 0.75);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: #060911;
+      box-shadow: 0 4px 16px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 0 4rem;
+      text-align: center;
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      color: var(--success);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--success);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--primary) 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Section Header */
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Services Grid */
+    .services {
+      padding: 5rem 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(8px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-accent);
+      transform: translateY(-4px);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      display: inline-block;
+      width: fit-content;
+      padding: 0.75rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex-grow: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--primary);
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 5rem 0;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-4px);
+    }
+
+    .project-header {
+      padding: 2rem 2rem 1.25rem;
+    }
+
+    .project-header h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-body {
+      padding: 0 2rem 1.5rem;
+      flex-grow: 1;
+    }
+
+    .project-body p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-metrics {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .project-footer {
+      padding: 1.25rem 2rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Tech Stack */
+    .stack {
+      padding: 5rem 0;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .stack-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .stack-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .stack-item:hover {
+      border-color: var(--primary);
+      background: rgba(56, 189, 248, 0.05);
+      transform: translateY(-2px);
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 6rem 0;
+      text-align: center;
+      background: linear-gradient(180deg, transparent 0%, rgba(56, 189, 248, 0.03) 100%);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .cta-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-accent);
+      border-radius: 24px;
+      padding: 4rem 2rem;
+      max-width: 780px;
+      margin: 0 auto;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .cta h2 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
+
+    .cta p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-content">
+      <a href="#" class="brand">
+        AP<span>.dev</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <a href="https://wa.me/5491141650275?text=Hola%20Alexander,%20quisiera%20consultarte%20por%20un%20proyecto" target="_blank" class="btn btn-primary">
+        Hablemos 👋
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container">
+      <div class="badge-status">
+        <span class="status-dot"></span>
+        Disponible para proyectos freelance
+      </div>
+      <h1>
+        Desarrollo soluciones digitales<br>
+        <span class="highlight">modernas, interactivas y eficientes</span>
+      </h1>
+      <p>
+        Soy <strong>Alexander Pasquale</strong>, desarrollador de software enfocado en experiencias web 3D, arquitecturas backend, bots automatizados y análisis de datos de alto rendimiento.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5491141650275?text=Hola%20Alexander,%20tengo%20una%20propuesta%20de%20proyecto" target="_blank" class="btn btn-primary">
+          📲 Iniciar chat por WhatsApp
+        </a>
+        <a href="#proyectos" class="btn btn-secondary">
+          Explorar Proyectos ↓
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services Section -->
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section-title">
+        <h2>Servicios Freelance</h2>
+        <p>Soluciones orientadas a resultados comerciales y calidad técnica garantizada.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="card">
+          <div class="card-icon">🌐</div>
+          <h3>Experiencias Web 3D & Frontend</h3>
+          <p>Sitios web interactivos y landings inmersivas con Three.js y React. Capturan la atención del usuario y diferencian tu producto de la competencia.</p>
+          <div class="card-tags">
+            <span class="tag">Three.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">React</span>
+            <span class="tag">WebGL</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">⚙️</div>
+          <h3>Bots & Automatizaciones Web</h3>
+          <p>Desarrollo de bots autónomos, scraping de páginas complejas y sincronización de datos con Node.js y Puppeteer. Elimina procesos manuales.</p>
+          <div class="card-tags">
+            <span class="tag">Puppeteer</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Web Scraping</span>
+            <span class="tag">Webhooks</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🗄️</div>
+          <h3>Bases de Datos & Backend</h3>
+          <p>Estructuración de datos segura y eficiente con PostgreSQL, MySQL y SQL Server. Consultas optimizadas, integridad referencial y APIs REST.</p>
+          <div class="card-tags">
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">SQL Server</span>
+            <span class="tag">APIs REST</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Análisis de Datos & Pipelines</h3>
+          <p>Extracción, limpieza y visualización de grandes conjuntos de datos con Python. Métricas y analíticas claras para tomar decisiones con certeza.</p>
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Data Analytics</span>
+            <span class="tag">Dashboards</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>Control de Calidad & QA Testing</h3>
+          <p>Pruebas funcionales de extremo a extremo, prevención de riesgos y reporte exhaustivo de bugs para asegurar lanzamientos sin errores.</p>
+          <div class="card-tags">
+            <span class="tag">QA Testing</span>
+            <span class="tag">Pruebas Funcionales</span>
+            <span class="tag">Bug Triage</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🚀</div>
+          <h3>Desarrollo de MVPs & Prototipos</h3>
+          <p>Construcción ágil de productos mínimos viables listos para validar ideas con clientes reales en plazos breves y código preparado para escalar.</p>
+          <div class="card-tags">
+            <span class="tag">Full-Stack</span>
+            <span class="tag">SaaS / Web App</span>
+            <span class="tag">Fast Delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects" id="proyectos">
+    <div class="container">
+      <div class="section-title">
+        <h2>Casos de Estudio & Proyectos</h2>
+        <p>Una muestra de código real, arquitectura de datos y soluciones interactivas.</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3>🍔 Burger 3D Web Landing</h3>
+            <div class="card-tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">Three.js</span>
+              <span class="tag">Frontend 3D</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p>Experiencia inmersiva con renderizado tridimensional interactivo en el navegador orientada al sector gastronómico y e-commerce de impacto.</p>
+            <div class="project-metrics">
+              ✨ <strong>Logro:</strong> Animaciones 3D fluidas a 60 FPS sin degradar tiempos de carga inicial.
+            </div>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/PasqualeAlexander/burger-web-3D" target="_blank" class="project-link">
+              Ver Repositorio GitHub ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3>🤖 Automation Engine & League Bot</h3>
+            <div class="card-tags">
+              <span class="tag">Node.js</span>
+              <span class="tag">Puppeteer</span>
+              <span class="tag">MySQL</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p>Servidor de automatización y estadísticas en tiempo real con más de 180 commits. Control de partidas, sistema de niveles (XP) y roles VIP.</p>
+            <div class="project-metrics">
+              ⚡ <strong>Logro:</strong> Integración de transacciones MySQL concurrentes y automatización headless browser estable.
+            </div>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/PasqualeAlexander/bot-JT-LNB" target="_blank" class="project-link">
+              Ver Repositorio GitHub ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3>📊 Sports & Performance Data Analytics</h3>
+            <div class="card-tags">
+              <span class="tag">Python</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Data Analytics</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <p>Pipeline de procesamiento de estadísticas deportivas y análisis de rendimiento para la generación automática de insights competitivos.</p>
+            <div class="project-metrics">
+              📈 <strong>Logro:</strong> Transformación de datos sin estructurar en métricas y tablas analíticas listas para toma de decisiones.
+            </div>
+          </div>
+          <div class="project-footer">
+            <a href="https://github.com/PasqualeAlexander" target="_blank" class="project-link">
+              Ver Repositorios de Datos ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="stack" id="stack">
+    <div class="container">
+      <div class="section-title">
+        <h2>Tecnologías & Herramientas</h2>
+        <p>Herramientas probadas para construir soluciones sólidas de extremo a extremo.</p>
+      </div>
+
+      <div class="stack-badges">
+        <div class="stack-item">⚡ JavaScript (ES6+)</div>
+        <div class="stack-item">📘 TypeScript</div>
+        <div class="stack-item">🐍 Python</div>
+        <div class="stack-item">☕ Java</div>
+        <div class="stack-item">🌐 Three.js / WebGL</div>
+        <div class="stack-item">⚛️ React</div>
+        <div class="stack-item">🟩 Node.js</div>
+        <div class="stack-item">🤖 Puppeteer</div>
+        <div class="stack-item">🐘 PostgreSQL</div>
+        <div class="stack-item">🐬 MySQL</div>
+        <div class="stack-item">🗄️ SQL Server</div>
+        <div class="stack-item">🐙 Git & GitHub</div>
+        <div class="stack-item">🧪 QA & Testing</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta" id="contacto">
+    <div class="container">
+      <div class="cta-box">
+        <h2>¿Listo para construir tu próximo proyecto?</h2>
+        <p>Hablemos sobre tu idea, automatización o plataforma web. Te daré un enfoque técnico claro y un presupuesto sin compromiso.</p>
+        
+        <div class="hero-actions">
+          <a href="https://wa.me/5491141650275?text=Hola%20Alexander,%20me%20comunico%20desde%20tu%20web%20para%20consultarte%20por%20un%20proyecto" target="_blank" class="btn btn-primary">
+            📲 WhatsApp Directo (+54 9 11 4165-0275)
+          </a>
+          <a href="mailto:alexanderpasquale1@gmail.com" class="btn btn-secondary">
+            ✉️ alexanderpasquale1@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/pasqualealexander" target="_blank" class="btn btn-secondary">
+            💼 LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Alexander Pasquale • Desarrollador Full-Stack, Automatizaciones & 3D Web • Buenos Aires, Argentina</p>
+    </div>
+  </footer>
+
+</body>
+</html>
